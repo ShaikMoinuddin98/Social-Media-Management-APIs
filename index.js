@@ -75,6 +75,9 @@ const loginschema = new mongoose.Schema({
     },
     email: {
         type: String
+    },
+    posts: {
+        type: Array
     }
 })
 
@@ -129,6 +132,7 @@ function isLoggedIn(req, res, next) {
 app.get("/dashboard", isLoggedIn, (req, res) => {
     res.status(200).json({ Authenication: true, message: "Auth success" })
 })
+
 
 
 
@@ -307,6 +311,165 @@ app.post("/reset-pass/:id/:token", async (req, res) => {
 
         console.log(err)
         res.status(406).json({ message: err.message })
+    }
+})
+
+
+//Task 2 Starts from here
+
+app.post("/createpost", isLoggedIn, async (req, res) => {
+    try {
+        let u = req.user
+        console.log(u.posts)
+        let { post } = req.body
+        let presentposts = [...req.user.posts]
+        let newpost = { pname: post, like: 0, comments: [] }
+        presentposts.push(newpost)
+        let d = await data.updateOne({ username: u.username }, { $set: { posts: presentposts } })
+            .then((re) => {
+                res.status(200).json({ "message": "posted successfully" })
+            })
+    }
+    catch (err) {
+        console.log(err)
+        res.status(406).json({ "Error": err.message })
+    }
+})
+
+app.post("/getposts", async (req, res) => {
+    try {
+        let { user } = req.body
+        console.log(req.body)
+        let d = await data.findOne({ username: user })
+        console.log(d)
+
+        if (d) {
+            if (d.posts.length >= 1) {
+                res.status(200).json({ "message": d.posts })
+            }
+            else {
+                res.status(406).json({ "message": "no posts" })
+            }
+        }
+        else {
+            res.status(406).json({ "message": "user not found" })
+        }
+    }
+    catch (err) {
+        res.status(406).json({ "message": err.message })
+    }
+})
+
+app.delete("/deletepost", isLoggedIn, async (req, res) => {
+    try {
+
+        let { post_no } = req.body
+        if (post_no <= req.user.posts.length) {
+
+            let userposts = req.user.posts
+            userposts.splice(post_no - 1, 1)
+            let r = await data.updateOne({ username: req.user.username }, { $set: { posts: userposts } })
+                .then((re) => {
+                    console.log(re)
+                    res.status(200).json({ "message": "deleted successfully" })
+                })
+        }
+        else {
+            res.status(406).json({ "message": "post not found" })
+        }
+    }
+    catch (err) {
+        res.status(406).json({ "error": err.message })
+    }
+})
+
+app.post("/updatepost", isLoggedIn, async (req, res) => {
+    try {
+        let { post, post_no } = req.body
+        let currentposts = req.user.posts
+        if (currentposts.length >= post_no) {
+            currentposts[post_no - 1].pname = post
+
+            let r = await data.updateOne({ "username": req.user.username }, { $set: { posts: currentposts } })
+                .then((re) => {
+                    res.status(200).json({ "message": "post updated" })
+                })
+        }
+        else {
+            res.status(406).json({ "message": "post not found" })
+        }
+    }
+    catch (err) {
+        res.status(406).json({ "message": err.message })
+    }
+})
+
+app.post("/like", async (req, res) => {
+    try {
+        let { user, post_no } = req.body
+        let u = await data.findOne({ username: user })
+        // .then(async (ress) => {
+        if (u) {
+            if (u.posts.length >= post_no) {
+                console.log(u)
+                let post = u.posts
+                console.log(post)
+                post[post_no - 1].like += 1
+                let r = await data.updateOne({ username: user }, { $set: { posts: post } })
+                    .then((re) => {
+                        console.log(re)
+                        res.status(200).json({ "message": "liked success" })
+                    })
+            }
+            else {
+                res.status(406).json({ "message": "post not found" })
+            }
+        }
+        else {
+            res.status(406).json({ "message": "user not found" })
+        }
+        // })
+    }
+    catch (err) {
+        console.log(err)
+        res.status(406).json({ "message": "user not found" })
+    }
+})
+
+app.post("/comment", async (req, res) => {
+    try {
+        let { user, post_no, comment } = req.body
+        let u = await data.findOne({ username: user })
+        if (u) {
+            if (u.posts.length >= post_no) {
+                let post = u.posts
+                post[post_no - 1].comments.push(comment)
+                let r = await data.updateOne({ username: user }, { $set: { posts: post } })
+                res.status(200).json({ "message": "commented" })
+            }
+            else {
+                res.status(406).json({ "message": "Post not found" })
+            }
+        }
+        else {
+            res.status(406).json({ "message": "user not found" })
+        }
+    }
+    catch (err) {
+        console.log(err)
+        res.status(406).json({ "message": err.message })
+    }
+})
+
+app.delete("/deleteaccount", isLoggedIn, async (req, res) => {
+    try {
+        let u = await data.deleteOne({ username: req.user.username })
+            .then((re) => {
+                res.status(200).json({ "message": "account deleted" })
+            })
+    }
+    catch (err) {
+        res.status(406).json({ "message": err.message })
     }
 })
 
