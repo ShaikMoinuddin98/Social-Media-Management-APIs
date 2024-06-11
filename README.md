@@ -106,7 +106,7 @@ This is an Express-based server application that provides user authentication, s
   }
   ```
 
-  #### Password Reset Request
+#### Password Reset Request
 - **URL:** `/forgetpass`
 - **Method:** `POST`
 - **Body:**
@@ -122,7 +122,7 @@ This is an Express-based server application that provides user authentication, s
   }
   ```
 
-  #### Password Reset
+#### Password Reset
 - **URL:** `/reset-pass/:id/:token`
 - **Method:** `POST`
 - **Body:**
@@ -138,7 +138,7 @@ This is an Express-based server application that provides user authentication, s
   }
   ```
 
-  #### Create Post
+#### Create Post
 - **URL:** `/createpost`
 - **Method:** `POST`
 - **Headers:**
@@ -160,8 +160,8 @@ This is an Express-based server application that provides user authentication, s
   }
   ```
 
-    #### Get Posts
-- **URL:** `/createpost`
+#### Get Posts
+- **URL:** `/getposts`
 - **Method:** `GET`
 - **Headers:**
   ```json
@@ -182,7 +182,7 @@ This is an Express-based server application that provides user authentication, s
   }
   ```
 
-  #### Update Post
+#### Update Post
 - **URL:** `/updatepost`
 - **Method:** `POST`
 - **Headers:**
@@ -205,7 +205,7 @@ This is an Express-based server application that provides user authentication, s
   }
   ```
 
-    #### Delete Post
+#### Delete Post
 - **URL:** `/deletepost`
 - **Method:** `DELETE`
 - **Headers:**
@@ -227,7 +227,7 @@ This is an Express-based server application that provides user authentication, s
   }
   ```
 
-  #### Like Post
+#### Like Post
 - **URL:** `/like`
 - **Method:** `POST`
 - **Headers:**
@@ -249,7 +249,7 @@ This is an Express-based server application that provides user authentication, s
   }
   ```
 
-    #### comment on Post
+#### comment on Post
 - **URL:** `/comment`
 - **Method:** `POST`
 - **Headers:**
@@ -273,7 +273,7 @@ This is an Express-based server application that provides user authentication, s
   }
   ```
 
-    #### Delete account
+#### Delete account
 - **URL:** `/deleteaccount`
 - **Method:** `DELETE`
 - **Headers:**
