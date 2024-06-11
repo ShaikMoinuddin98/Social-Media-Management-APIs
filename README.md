@@ -28,7 +28,7 @@ This is an Express-based server application that provides user authentication, s
 
 2. Install the dependencies:
     ```sh
-    npm install
+    npm install express jsonwebtoken nodemailer express-session mongoose body-parser passport-local-mongoose passport passport-local crypto
     ```
 
 3. Configure MongoDB:
