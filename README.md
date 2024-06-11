@@ -22,7 +22,7 @@ This is an Express-based server application that provides user authentication, s
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/ShaikMoinuddin98/User-Authentication-Apis.git
+    git clone https://github.com/ShaikMoinuddin98/Social-Media-Management-APIs.git
     cd User-Authentication-Apis
     ```
 
