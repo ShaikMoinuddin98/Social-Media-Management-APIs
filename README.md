@@ -1,4 +1,4 @@
-# User Authentication and Post Management API
+# Social Media Post Management APIs
 
 This is an Express-based server application that provides user authentication, session management, email notifications, and post management functionalities. It uses MongoDB for the database, Passport.js for authentication, JWT for token-based authentication, and Nodemailer for sending emails.
 
