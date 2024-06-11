@@ -51,7 +51,7 @@ This is an Express-based server application that provides user authentication, s
 
 5. Run the server:
     ```sh
-    node server.js
+    node index.js
     ```
 
 ## Usage
