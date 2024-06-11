@@ -4,9 +4,9 @@ This is an Express-based server application that provides user authentication, s
 
 ## Features
 
-- User registration, login, and logout
-- Email encryption and decryption
-- Password reset via email with JWT
+- User registration, login, and logout using PassportJS and JWT
+- Email encryption and decryption using Crypto hashing
+- Password reset via email with JWT and email forwarding with Nodemailer
 - Post creation, retrieval, update, deletion, likes, and comments
 - Session management with Express-session
 - Token-based authentication with JWT
@@ -22,8 +22,8 @@ This is an Express-based server application that provides user authentication, s
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/user-auth-post-management.git
-    cd user-auth-post-management
+    git clone https://github.com/ShaikMoinuddin98/User-Authentication-Apis.git
+    cd User-Authentication-Apis
     ```
 
 2. Install the dependencies:
