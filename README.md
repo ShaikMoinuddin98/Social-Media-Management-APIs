@@ -78,7 +78,7 @@ This is an Express-based server application that provides user authentication, s
   "token": "jwt-token"
   }
   ```
-  
+#### User Login
 - **URL:** `/login`
 - **Method:** `POST`
 - **Body:**
@@ -96,7 +96,7 @@ This is an Express-based server application that provides user authentication, s
   "token": "jwt-token"
   }
   ```
-
+#### User Logout
 - **URL:** `/logout`
 - **Method:** `POST`
 - **Response:**
@@ -105,5 +105,195 @@ This is an Express-based server application that provides user authentication, s
   "message": "Logout success"
   }
   ```
+
+  #### Password Reset Request
+- **URL:** `/forgetpass`
+- **Method:** `POST`
+- **Body:**
+  ```json
+  {
+  "email": "your-email"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "message": "mail sent to given email"
+  }
+  ```
+
+  #### Password Reset
+- **URL:** `/reset-pass/:id/:token`
+- **Method:** `POST`
+- **Body:**
+  ```json
+  {
+   "password": "new-password"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "message": "password changed successfully"
+  }
+  ```
+
+  #### Create Post
+- **URL:** `/createpost`
+- **Method:** `POST`
+- **Headers:**
+  ```json
+  {
+   "Authorization": "Bearer jwt-token"
+  }
+  ```
+- **Body:**
+  ```json
+  {
+   "post": "your-post-content"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+      "message": "posted successfully"
+  }
+  ```
+
+    #### Get Posts
+- **URL:** `/createpost`
+- **Method:** `GET`
+- **Headers:**
+  ```json
+  {
+   "Authorization": "Bearer jwt-token"
+  }
+  ```
+- **Body:**
+  ```json
+  {
+    "user": "username"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+       "message": [list-of-posts]
+  }
+  ```
+
+  #### Update Post
+- **URL:** `/updatepost`
+- **Method:** `POST`
+- **Headers:**
+  ```json
+  {
+   "Authorization": "Bearer jwt-token"
+  }
+  ```
+- **Body:**
+  ```json
+  {
+  "post": "updated-post-content",
+  "post_no": "post-number"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+       "message": "post updated"
+  }
+  ```
+
+    #### Delete Post
+- **URL:** `/deletepost`
+- **Method:** `DELETE`
+- **Headers:**
+  ```json
+  {
+   "Authorization": "Bearer jwt-token"
+  }
+  ```
+- **Body:**
+  ```json
+  {
+  "post_no": "post-number"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+  "message": "deleted successfully"
+  }
+  ```
+
+  #### Like Post
+- **URL:** `/like`
+- **Method:** `POST`
+- **Headers:**
+  ```json
+  {
+   "Authorization": "Bearer jwt-token"
+  }
+  ```
+- **Body:**
+  ```json
+  {
+   "user": "username",
+  "post_no": "post-number"
+  }
+  ```
+- **Response:**
+  ```json
+  { "message": "liked success"
+  }
+  ```
+
+    #### comment on Post
+- **URL:** `/comment`
+- **Method:** `POST`
+- **Headers:**
+  ```json
+  {
+   "Authorization": "Bearer jwt-token"
+  }
+  ```
+- **Body:**
+  ```json
+  {
+    "user": "username",
+  "post_no": "post-number",
+  "comment": "your-comment"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+   "message": "commented"
+  }
+  ```
+
+    #### Delete account
+- **URL:** `/deleteaccount`
+- **Method:** `DELETE`
+- **Headers:**
+  ```json
+  {
+   "Authorization": "Bearer jwt-token"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+   "message": "account deleted"
+  }
+  ```
+  
+
+  
+  
+
+  
+  
 
   
