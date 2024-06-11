@@ -69,3 +69,41 @@ This is an Express-based server application that provides user authentication, s
     "email": "your-email",
     "password": "your-password"
   }
+  ```
+  - **Response:**
+  ```json
+  {
+  "Authenication": true,
+  "message": "signup success",
+  "token": "jwt-token"
+  }
+  ```
+  
+- **URL:** `/login`
+- **Method:** `POST`
+- **Body:**
+  ```json
+  {
+   "username": "your-username",
+  "password": "your-password"
+  }
+  ```
+  - **Response:**
+  ```json
+  {
+  "Authenication": true,
+  "message": "signup success",
+  "token": "jwt-token"
+  }
+  ```
+
+- **URL:** `/logout`
+- **Method:** `POST`
+- **Response:**
+  ```json
+  {
+  "message": "Logout success"
+  }
+  ```
+
+  
